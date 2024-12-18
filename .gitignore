@@ -8,3 +8,4 @@ aetherwave-research/content/data-visualisation/npz_data/*.npz
 
 # Editor files
 .prettierrc
+.DS_Store
