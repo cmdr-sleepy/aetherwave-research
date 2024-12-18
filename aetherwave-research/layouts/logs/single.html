@@ -1,0 +1,33 @@
+{{ define "main" }}
+<article class="log-entry">
+    <header>
+        <time datetime="{{ .Date.Format " 2006-01-02T15:04:05Z07:00" }}">
+            {{ .Date.Format "2006-01-02 15:04 UTC" }}
+        </time>
+        <h1>{{ .Title }}</h1>
+        {{ with .Params.commander }}<p class="commander">CMDR {{ . }}</p>{{ end }}
+        {{ with .Params.location }}<p class="location">Location: {{ . }}</p>{{ end }}
+    </header>
+
+    <div class="log-content">
+        {{ .Content }}
+    </div>
+
+    <footer>
+        {{ with .Params.quantum_state }}
+        <div class="quantum-state">
+            Current Quantum State: {{ . }}
+        </div>
+        {{ end }}
+
+        <nav class="log-navigation">
+            {{ with .PrevInSection }}
+            <a href="{{ .RelPermalink }}" class="prev">← {{ .Title }}</a>
+            {{ end }}
+            {{ with .NextInSection }}
+            <a href="{{ .RelPermalink }}" class="next">{{ .Title }} →</a>
+            {{ end }}
+        </nav>
+    </footer>
+</article>
+{{ end }}

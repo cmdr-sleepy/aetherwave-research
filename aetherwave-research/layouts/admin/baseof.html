@@ -1,0 +1,52 @@
+{{ define "main" }}
+<div class="quantum-admin" id="admin-content" style="display: none;">
+    {{ block "admin-content" . }}{{ end }}
+</div>
+
+<div class="quantum-login" id="login-required">
+    <div class="quantum-paper">
+        <h1>Quantum Authentication Required</h1>
+        <p>Please provide your quantum signature key.</p>
+        <div class="quantum-auth-form">
+            <input type="password" id="quantum-key" class="search-input" placeholder="Quantum Key" autocomplete="off">
+            <button onclick="verifyQuantumKey()" class="quantum-button">
+                Verify
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Simple SHA-256 hashing function
+    async function hashString(str) {
+        const msgBuffer = new TextEncoder().encode(str);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    // Verify the quantum key
+    async function verifyQuantumKey() {
+        const input = document.getElementById('quantum-key').value;
+        const hashedInput = await hashString(input);
+        // This hash should match your quantum key hash in Hugo's config
+        const validHash = '{{ .Site.Params.adminKeyHash }}';
+
+        if (hashedInput === validHash) {
+            sessionStorage.setItem('quantum-verified', 'true');
+            document.getElementById('admin-content').style.display = 'block';
+            document.getElementById('login-required').style.display = 'none';
+        } else {
+            alert('Invalid quantum signature key');
+        }
+    }
+
+    // Check for existing verification
+    document.addEventListener('DOMContentLoaded', () => {
+        if (sessionStorage.getItem('quantum-verified') === 'true') {
+            document.getElementById('admin-content').style.display = 'block';
+            document.getElementById('login-required').style.display = 'none';
+        }
+    });
+</script>
+{{ end }}

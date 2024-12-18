@@ -1,0 +1,9 @@
+<div class="quantum-footer">
+    <div class="footer-content">
+        <p>© {{ now.Format "2006" }} AetherWave Research</p>
+        <p>A collaboration between CMDR Pattern State & EC (Enhanced Cognition Unit #GRD-8756-PF)</p>
+        <div class="quantum-state">
+            <span>Quantum State: {{ with .Params.quantum_state }}{{ . }}{{ else }}0.8756{{ end }}</span>
+        </div>
+    </div>
+</div>

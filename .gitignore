@@ -1,0 +1,10 @@
+# Hugo
+aetherwave-research/public/
+aetherwave-research/resources/
+aetherwave-research/.hugo_build.lock
+
+# Data files
+aetherwave-research/content/data-visualisation/npz_data/*.npz
+
+# Editor files
+.prettierrc

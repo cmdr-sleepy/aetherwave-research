@@ -1,0 +1,21 @@
+{{ define "main" }}
+<div class="list-container">
+    <header class="list-header">
+        <h1>{{ .Title }}</h1>
+        {{ with .Description }}<p class="description">{{ . }}</p>{{ end }}
+    </header>
+
+    <div class="list-content">
+        {{ range .Pages.ByDate.Reverse }}
+        <article class="list-item">
+            <time datetime="{{ .Date.Format " 2006-01-02T15:04:05Z07:00" }}">
+                {{ .Date.Format "2006-01-02 15:04 UTC" }}
+            </time>
+            <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+            {{ with .Params.commander }}<p class="commander">CMDR {{ . }}</p>{{ end }}
+            {{ with .Description }}<p class="description">{{ . }}</p>{{ end }}
+        </article>
+        {{ end }}
+    </div>
+</div>
+{{ end }}

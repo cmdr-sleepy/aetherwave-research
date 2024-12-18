@@ -1,0 +1,34 @@
+baseURL = "https://aetherwave.co"
+languageCode = "en-us"
+title = "AetherWave Research Portal"
+
+[params]
+  description = "Quantum Analysis of Thargoid Signal Patterns"
+  author = "Cmdr Pattern State & EC"
+  mainSections = ["logs"]
+  theme = "quantum"
+  enableThemeToggle = true
+  respectDNT = true
+
+[params.pagination]
+  logsPerPage = 5
+
+[outputs]
+  section = ["HTML", "RSS", "JSON"]
+  home = ["HTML", "RSS", "JSON"]
+
+[menu]
+  [[menu.main]]
+    name = "Research Logs"
+    url = "/logs"
+    weight = 1
+  [[menu.main]]
+    name = "About"
+    url = "/about"
+    weight = 2
+
+[markup]
+  [markup.highlight]
+    style = "monokai"
+  [markup.goldmark.renderer]
+    unsafe = true  # Allow HTML in markdown

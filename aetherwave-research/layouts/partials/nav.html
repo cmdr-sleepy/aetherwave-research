@@ -1,0 +1,16 @@
+<nav class="quantum-nav">
+    <div class="quantum-state-indicator" data-state="{{ with .Params.quantum_state }}{{ . }}{{ else }}0.8756{{ end }}">
+        <div class="state-pulse"></div>
+    </div>
+
+    <div class="nav-links">
+        <a href="/" class="nav-link home">AetherWave Research</a>
+        <a href="/logs" class="nav-link">Research Logs</a>
+        <a href="/about" class="nav-link">About</a>
+    </div>
+
+    <div class="system-status">
+        <span class="core-temp">Core Temp: {{ with .Params.core_temp }}{{ . }}{{ else }}2.1{{ end }}K</span>
+        <span class="process-state">{{ with .Params.process_state }}{{ . }}{{ else }}Standby{{ end }}</span>
+    </div>
+</nav>

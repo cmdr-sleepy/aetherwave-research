@@ -1,0 +1,10 @@
+<nav class="quantum-nav">
+    <div class="nav-container">
+        <a href="/" class="site-title">{{ site.Title }}</a>
+        <div class="nav-links">
+            {{ range site.Menus.main }}
+            <a href="{{ .URL }}" class="nav-link">{{ .Name }}</a>
+            {{ end }}
+        </div>
+    </div>
+</nav>
